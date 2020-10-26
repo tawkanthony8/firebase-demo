@@ -3,22 +3,29 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FirebasedemoComponent } from './component/firebasedemo/firebasedemo.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 @NgModule({
   declarations: [
     AppComponent,
-    FirebasedemoComponent,
     LoginComponent,
     RegisterComponent,
     DashboardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'mytestapp'),
+    AngularFirestoreModule, // Only required for database features
+    AngularFireAuthModule, // Only required for auth features,
+    AngularFireStorageModule // Only required for storage features
   ],
   providers: [],
   bootstrap: [AppComponent]
